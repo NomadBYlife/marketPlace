@@ -304,6 +304,12 @@
     position: absolute;
     top: 20px;
     left: calc(100% - 42px);
+    cursor: pointer;
+
+    &:hover path {
+      transition: all 0.3s linear;
+      stroke: #2D2DAB;
+    }
   }
 
   &__container {
@@ -339,6 +345,11 @@
     position: absolute;
     top: 15px;
     left: calc(100% - 27px);
+
+    &:hover path {
+      transition: all 0.3s linear;
+      stroke: #2D2DAB;
+    }
   }
 
   &__card_imgWrap {
