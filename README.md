@@ -14,10 +14,6 @@ The "Market Place" is our first project. Vanilla JavaScript using Webpack to bui
 - Webpack
 - SCSS
 
-## Architecture
-
-There is "marketPlace.drawio". Open it on "https://app.diagrams.net/"
-
 ## Quick start
 
 Follow these steps to get started with a project:
