@@ -1,6 +1,8 @@
 import '../style/style.scss'
-import { counterId, Product } from './Product.js';
+import {Product} from './Product.js';
+import {domManipulation} from './domManipulation.js'
 
+domManipulation()
 
 const card1 = new Product('../images/card1.jpg', 'Блендер Sakura', '79.00');
 
