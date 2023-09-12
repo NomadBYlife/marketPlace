@@ -9,7 +9,7 @@ const count = function getCount() {
 }
 const counterId = count()
 
-class Card {
+class Product {
     constructor(pathToImage, description, price) {
         this.id = `card_${counterId()}`
         this.pathToImage = pathToImage;
@@ -126,4 +126,4 @@ class Card {
     }
 }
 
-export { counterId, Card};
+export { counterId, Product};
