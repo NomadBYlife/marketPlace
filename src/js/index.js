@@ -14,3 +14,4 @@ productList.addProduct('../images/card7.jpg', 'Вертикальный пыле
 productList.addProduct('../images/card8.jpg', 'Телевизор LG 50UQ75006LF', '1296.55')
 productList.addProduct('../images/card6.jpg', 'Кухонные ножницы Huo Hou', '20.00')
 productList.renderList("bestSelling__cards")
+productList.search()
