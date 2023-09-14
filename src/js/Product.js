@@ -2,7 +2,7 @@
 
 const count = function getCount() {
     let c = 0;
-    return function() {
+    return function () {
         c++
         return c
     }
@@ -30,10 +30,9 @@ export class Product {
             this.increase();
         })
 
-
         const svgIncreaseNS = 'http://www.w3.org/2000/svg';
 
-        const svgIncreaseIcon = document.createElementNS(svgIncreaseNS,'svg');
+        const svgIncreaseIcon = document.createElementNS(svgIncreaseNS, 'svg');
         svgIncreaseIcon.setAttribute('width', '24');
         svgIncreaseIcon.setAttribute('height', '24');
         svgIncreaseIcon.setAttribute('viewBox', '0 0 24 24');
@@ -117,11 +116,11 @@ export class Product {
         svgCartPath.setAttribute('d', 'M37.7849 9.93962C37.6754 9.78508 37.5302 9.65895 37.3615 9.57185C37.1927 9.48474 37.0054 9.43921 36.8153 9.43909H11.4861L9.56878 2.8672C8.81689 0.279365 7.03022 0 6.29742 0H1.18516C0.529904 0 0 0.527294 0 1.17796C0 1.82862 0.530501 2.35588 1.18512 2.35588H6.29679C6.4585 2.35588 6.95201 2.35588 7.2886 3.51189L13.8844 27.6055C14.0276 28.1138 14.4936 28.4649 15.0253 28.4649H31.136C31.6361 28.4649 32.0825 28.1535 32.2514 27.6855L37.9299 11.0156C38.0606 10.6543 38.0063 10.2522 37.7849 9.93962H37.7849ZM30.302 26.1096H15.9248L12.1522 11.7956H35.1303L30.302 26.1096ZM27.9515 30.8523C26.3033 30.8523 24.9678 32.1797 24.9678 33.818C24.9678 35.4562 26.3033 36.7836 27.9515 36.7836C29.5997 36.7836 30.9352 35.4562 30.9352 33.818C30.9352 32.1797 29.5997 30.8523 27.9515 30.8523ZM17.2102 30.8523C15.562 30.8523 14.2265 32.1797 14.2265 33.818C14.2265 35.4562 15.562 36.7836 17.2102 36.7836C18.8584 36.7836 20.1939 35.4562 20.1939 33.818C20.1939 32.1797 18.8584 30.8523 17.2102 30.8523Z');
         svgCartPath.setAttribute('fill', '#3131A7');
         svgCart.append(svgCartPath);
+        return divCard
     }
 
     increase() {
 
-        
         const divIncreaseWrap = document.createElement('div');
         divIncreaseWrap.classList.add('modalWindow__increase_wrap')
         document.querySelector('.modalWindow__increase_block').append(divIncreaseWrap);
@@ -136,7 +135,6 @@ export class Product {
         divIncreaseCloseImgWrap.addEventListener('click', event => {
             divIncreaseWrap.remove();
         })
-
 
         const svgIncreaseCloseNS = "http://www.w3.org/2000/svg";
         const svgIncreaseClose = document.createElementNS(svgIncreaseCloseNS, "svg");
@@ -160,3 +158,4 @@ export class Product {
         divIncrease.append(imgIncrease);
     }
 }
+
