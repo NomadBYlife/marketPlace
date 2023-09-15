@@ -1,12 +1,12 @@
 import '../style/style.scss'
-import {Product} from './Product.js';
+import {ProductList} from './ProductLIst.js';
+import { Product } from './Product';
 import {domManipulation} from './domManipulation.js'
 import card from './ShoppingCart';
 
 domManipulation()
 
 const card1 = new Product('../images/card1.jpg', 'Блендер Sakura', 79.00);
-
 card1.render();
 
 const card2 = new Product('../images/card2.jpg', 'Сушилка для овощей и фруктов Normann', 136.15);

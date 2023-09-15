@@ -131,3 +131,4 @@ dist
 
 #macOs files
 .idea/
+.DS_Store
