@@ -1,6 +1,6 @@
 "use strict";
 import { animationIn, animationOut, counterId} from './utils.js'
-
+import card from './ShoppingCart';
 
 export class Product {
     constructor(pathToImage, description, price) {
@@ -8,6 +8,7 @@ export class Product {
         this.pathToImage = pathToImage;
         this.description = description;
         this.price = price;
+        card.registerProduct(this);
     }
 
     render() {
@@ -80,12 +81,12 @@ export class Product {
 
         const pPrice = document.createElement('p');
         pPrice.classList.add('card__price');
-        pPrice.innerHTML = this.price.split('.')[0] + '.'
+        pPrice.innerHTML = this.price.toFixed(2).split('.')[0] + '.'
         divPriceWrap.append(pPrice);
 
         const spanPrice = document.createElement('span');
         spanPrice.classList.add('card__price_span');
-        spanPrice.innerHTML = this.price.split('.')[1];
+        spanPrice.innerHTML = this.price.toFixed(2).split('.')[1];
         pPrice.append(spanPrice)
 
         const pPriceCurrency = document.createElement('p');
@@ -96,6 +97,10 @@ export class Product {
         const divShopCartWrap = document.createElement('div');
         divShopCartWrap.classList.add('card__shopCart_iconWrap');
         divDesctiptionFlexWrap.append(divShopCartWrap);
+        const thisId = this.id;
+        divShopCartWrap.addEventListener('click', function(){            
+            card.add(thisId);
+        });
 
         const svgCartNS = 'http://www.w3.org/2000/svg'
         const svgCart = document.createElementNS(svgCartNS, "svg");
