@@ -1,13 +1,6 @@
 "use strict";
+import { animationIn, animationOut, counterId} from './utils.js'
 
-const count = function getCount() {
-    let c = 0;
-    return function () {
-        c++
-        return c
-    }
-}
-const counterId = count()
 
 export class Product {
     constructor(pathToImage, description, price) {
@@ -28,6 +21,7 @@ export class Product {
         divCard.append(divIncreaseIconWrap);
         divIncreaseIconWrap.addEventListener('click', event => {
             this.increase();
+            animationIn();
         })
 
         const svgIncreaseNS = 'http://www.w3.org/2000/svg';
@@ -122,8 +116,13 @@ export class Product {
     increase() {
 
         const divIncreaseWrap = document.createElement('div');
-        divIncreaseWrap.classList.add('modalWindow__increase_wrap')
+        divIncreaseWrap.classList.add('modalWindow__increase_wrap');
         document.querySelector('.modalWindow__increase_block').append(divIncreaseWrap);
+        divIncreaseWrap.addEventListener('click', event => {
+            if(event.target === divIncreaseWrap) {
+                animationOut();
+            }
+        })
 
         const divIncrease = document.createElement('div');
         divIncrease.classList.add('modalWindow__increase');
@@ -133,7 +132,7 @@ export class Product {
         divIncreaseCloseImgWrap.classList.add('modalWindow__increase__closeImg_wrap');
         divIncrease.append(divIncreaseCloseImgWrap);
         divIncreaseCloseImgWrap.addEventListener('click', event => {
-            divIncreaseWrap.remove();
+            animationOut();
         })
 
         const svgIncreaseCloseNS = "http://www.w3.org/2000/svg";
@@ -157,5 +156,8 @@ export class Product {
         imgIncrease.src = this.pathToImage;
         divIncrease.append(imgIncrease);
     }
+
 }
+
+
 
