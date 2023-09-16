@@ -17,6 +17,7 @@ export function domManipulation() {
                 prevEl: ".swiper-button-prev",
             },
         });
+        // let
     });
 
     const cartIcon = document.querySelector('.header__shopCart_iconWrap');
@@ -24,7 +25,7 @@ export function domManipulation() {
     const closeCart = document.querySelector('.modalWindow__closeImg_wrap')
 
     cartIcon.addEventListener('click', ()=>{
-        cartModal.style.display = 'block'
+        cartModal.style.display = 'flex'
     } )
 
     closeCart.addEventListener('click', ()=>{

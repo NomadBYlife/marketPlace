@@ -4,12 +4,13 @@ export class Cart {
 
         let storedItems = window.localStorage.getItem(this.storeKey);
         this.items = storedItems ? JSON.parse(storedItems) : {};
-        this.updateUI()
+        this.updateCountIcon()
 
     }
 
     add(product) {
         /** Добавляет продукт в корзину. Если продукт уже есть, увеличивает его количество. **/
+        // debugger
         if (this.items[product.id]) {
             this.items[product.id].quantity++;
         } else {
@@ -18,26 +19,32 @@ export class Cart {
                 quantity: 1
             };
         }
-        this.updateUI();
+        this.updateCountIcon();
         this.saveToStorage();
+        return this.items[product.id].quantity
     }
 
 
     remove(product) {
+        // debugger
         /** Удаляет продукт из корзины. **/
         if (this.items[product.id]) {
             this.items[product.id].quantity--;
             if (this.items[product.id].quantity === 0) {
                 delete this.items[product.id];
+                this.updateCountIcon();
+                this.saveToStorage();
+                return 0
+
             }
         }
-
-        this.updateUI();
+        this.updateCountIcon();
         this.saveToStorage();
+        return this.items[product.id] ? this.items[product.id].quantity : 0;
     }
 
 
-    updateUI() {
+    updateCountIcon() {
         /** Обновляет интерфейс корзины. **/
         let totalCount = 0;
 
