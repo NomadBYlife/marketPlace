@@ -16,5 +16,5 @@ productList.addProduct('../images/card5.jpg', 'Кухонный нож пова�
 productList.addProduct('../images/card7.jpg', 'Вертикальный пылесос Deerma DX700 Plus', 124.00)
 productList.addProduct('../images/card8.jpg', 'Телевизор LG 50UQ75006LF', 1296.55)
 productList.addProduct('../images/card6.jpg', 'Кухонные ножницы Huo Hou', 20.00)
-productList.renderList("bestSelling__cards")
+productList.renderList()
 productList.search()

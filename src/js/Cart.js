@@ -1,16 +1,13 @@
 export class Cart {
     constructor() {
         this.storeKey = 'cartItems';
-
         let storedItems = window.localStorage.getItem(this.storeKey);
         this.items = storedItems ? JSON.parse(storedItems) : {};
         this.updateCountIcon()
-
     }
 
     add(product) {
         /** Добавляет продукт в корзину. Если продукт уже есть, увеличивает его количество. **/
-        // debugger
         if (this.items[product.id]) {
             this.items[product.id].quantity++;
         } else {
@@ -26,12 +23,10 @@ export class Cart {
 
 
     remove(product) {
-        // debugger
         /** Удаляет продукт из корзины. **/
         if (this.items[product.id]) {
             this.items[product.id].quantity--;
             if (this.items[product.id].quantity === 0) {
-                delete this.items[product.id];
                 this.updateCountIcon();
                 this.saveToStorage();
                 return 0
@@ -43,9 +38,8 @@ export class Cart {
         return this.items[product.id] ? this.items[product.id].quantity : 0;
     }
 
-
     updateCountIcon() {
-        /** Обновляет интерфейс корзины. **/
+        /** Обновляет иконку корзины(цифру). **/
         let totalCount = 0;
 
         for (let itemKey in this.items) {
@@ -67,4 +61,107 @@ export class Cart {
         /** Сохраняет в ЛокалСтор*/
         window.localStorage.setItem(this.storeKey, JSON.stringify(this.items));
     }
+
+    redrawCart() {
+        /** Отрисовать карточки в корзине */
+        const allCards = document.querySelector('.modalWindow__cards')
+        const subTotalPrice = document.querySelector('.modalWindow__subtotalPrice');
+        if (Object.keys(this.items).length === 0) {
+            allCards.innerHTML = '<p class="modalWindow__emptyCart_text" style="display:inline;">Cart is empty.</p>';
+        } else {
+            allCards.innerHTML = '';
+            for (let item in this.items) {
+                let product = this.items[item];
+                let cardForCart = this.buildHtmlTag(product)
+                allCards.append(cardForCart)
+            }
+        }
+        const productsPrice = this.totalPrice().toFixed(2);
+        const parts = productsPrice.split(".");
+        const integerPart = parseInt(parts[0], 10);
+        const fractionalPart = parts[1] ? parts[1].padStart(2, '0') : '00';
+        subTotalPrice.innerHTML = `${integerPart}.<span class="modalWindow__subtotalPrice_span">${fractionalPart}</span>`
+    }
+
+    totalPrice() {
+                /** Посчитать общую сумму в корзине */
+        let total = 0;
+        for (let product in this.items) {
+            if (!this.items[product]) continue;
+            let quantity = this.items[product]['quantity'];
+            let price = this.items[product]['product'].price;
+            total += quantity * price;
+        }
+        return total;
+    }
+
+    deleteAll() {
+        /** Удалить все карточки в корзине */
+        this.items = {};
+        this.saveToStorage();
+        this.updateCountIcon();
+        this.redrawCart();
+
+    }
+
+    buildHtmlTag(product) {
+        const card = document.createElement('div');
+        card.classList.add('modalWindow__card');
+
+        const flexWrap = document.createElement('div');
+        flexWrap.classList.add('modalWindow__flexWrap');
+        card.append(flexWrap);
+
+        const imgWrap = document.createElement('div');
+        imgWrap.classList.add('modalWindow__card_imgWrap');
+        const img = document.createElement('img');
+        img.classList.add('modalWindow__img');
+        img.setAttribute('src', product['product'].pathToImage);
+        img.setAttribute('alt', '');
+        imgWrap.append(img);
+        flexWrap.append(imgWrap);
+
+        const descriptionFlexWrap = document.createElement('div');
+        descriptionFlexWrap.classList.add('modalWindow__description_flexWrap');
+
+        const descriptionWrap = document.createElement('div');
+        descriptionWrap.classList.add('modalWindow__description_wrap');
+        const descriptionText = document.createElement('p');
+        descriptionText.classList.add('modalWindow__description');
+        descriptionText.textContent = product['product'].description;
+        descriptionWrap.append(descriptionText);
+
+        const priceWrap = document.createElement('div');
+        priceWrap.classList.add('modalWindow__price_wrap');
+        const price = document.createElement('p');
+        price.classList.add('modalWindow__price');
+        const productPrice = product['product'].price * product['quantity']
+        const parts = productPrice.toFixed(2).split(".");
+        const integerPart = parseInt(parts[0], 10);
+        const fractionalPart = parts[1] ? parts[1].padStart(2, '0') : '00';
+        price.innerHTML = `${integerPart}.<span class="modalWindow__price_span">${fractionalPart}</span>`;
+        const currency = document.createElement('p');
+        currency.classList.add('modalWindow__price_currency');
+        currency.textContent = 'BYN';
+        priceWrap.append(price, currency);
+
+        descriptionFlexWrap.append(descriptionWrap, priceWrap);
+        flexWrap.append(descriptionFlexWrap);
+
+        const quantityWrap = document.createElement('div');
+        quantityWrap.classList.add('modalWindow__quantity_wrap');
+        const btnPlus = document.createElement('button');
+        btnPlus.classList.add('modalWindow__quantity_btnPlus');
+        btnPlus.textContent = '+';
+        const quantity = document.createElement('p');
+        quantity.classList.add('modalWindow__quantity');
+        quantity.textContent = product['quantity'];
+        const btnMinus = document.createElement('button');
+        btnMinus.classList.add('modalWindow__quantity_btnMinus');
+        btnMinus.textContent = '-';
+        quantityWrap.append(btnPlus, quantity, btnMinus);
+        card.append(quantityWrap);
+        return card
+    }
+
 }

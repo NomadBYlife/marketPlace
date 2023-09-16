@@ -1,5 +1,5 @@
 import {animationIn, animationOut, counterId} from './utils.js';
-import {Cart} from './cart.js';
+import {Cart} from './Cart.js';
 
 const cart = new Cart();
 
@@ -92,7 +92,7 @@ export class Product {
 
         const pPriceCurrency = document.createElement('p');
         pPriceCurrency.classList.add('card__price_currency');
-        pPriceCurrency.innerHTML = 'byn'
+        pPriceCurrency.innerHTML = 'BYN'
         divPriceWrap.append(pPriceCurrency);
 
         const divShopCartWrapMain = document.createElement('div');
@@ -135,9 +135,9 @@ export class Product {
 
             }
             if (event.target === btnQuantityMinus) {
-                let quantity2 = cart.remove(this);
+                let quantity = cart.remove(this);
                 // console.log(quantity2, 'qweqwe')
-                pQuantity.innerHTML = quantity2;
+                pQuantity.innerHTML = quantity;
                 if (pQuantity.innerHTML === '0') {
                     divQuantityWrap.style.display = 'none';
                     divShopCartWrap.style.display = '';

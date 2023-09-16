@@ -12,9 +12,10 @@ export class ProductList {
         this.productsList.push(product)
     }
 
-    renderList(insertedElement) {
+    renderList() {
         // Displaying a list of products on the page
-        const targetElement = document.querySelector(`.${insertedElement}`)
+        const targetElement = document.querySelector('.bestSelling__cards')
+        targetElement.innerHTML = ''
         if (!targetElement) {
             console.log("Target not found")
             return;
@@ -37,7 +38,6 @@ export class ProductList {
         input.addEventListener('input', () => {
             const query = input.value.toLowerCase();
             const filteredProduct = this.productsList.filter(product => product.description.toLowerCase().includes(query));
-            console.log(filteredProduct)
 
             targetElement.innerHTML = ""
             this.#displayProduct(filteredProduct, targetElement)
