@@ -1,6 +1,7 @@
-"use strict";
-import { animationIn, animationOut, counterId} from './utils.js'
-import card from './ShoppingCart';
+import {animationIn, animationOut, counterId} from './utils.js';
+import { Cart } from './cart.js';
+
+const cart = new Cart();
 
 export class Product {
     constructor(pathToImage, description, price) {
@@ -8,7 +9,7 @@ export class Product {
         this.pathToImage = pathToImage;
         this.description = description;
         this.price = price;
-        card.registerProduct(this);
+        // cart.registerProduct(this);
     }
 
     render() {
@@ -98,8 +99,8 @@ export class Product {
         divShopCartWrap.classList.add('card__shopCart_iconWrap');
         divDesctiptionFlexWrap.append(divShopCartWrap);
         const thisId = this.id;
-        divShopCartWrap.addEventListener('click', function(){            
-            card.add(thisId);
+        divShopCartWrap.addEventListener('click', () => {
+            cart.add(this)
         });
 
         const svgCartNS = 'http://www.w3.org/2000/svg'
@@ -124,7 +125,7 @@ export class Product {
         divIncreaseWrap.classList.add('modalWindow__increase_wrap');
         document.querySelector('.modalWindow__increase_block').append(divIncreaseWrap);
         divIncreaseWrap.addEventListener('click', event => {
-            if(event.target === divIncreaseWrap) {
+            if (event.target === divIncreaseWrap) {
                 animationOut();
             }
         })

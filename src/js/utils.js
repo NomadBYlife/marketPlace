@@ -3,7 +3,7 @@ export function animationIn() {
     let pos = -100;
     let timerId = setInterval(frame, 1);
     function frame() {
-        if (pos == 0) {
+        if (pos === 0) {
             clearInterval(timerId);
         } else {
             pos++; 
@@ -17,7 +17,7 @@ export function animationOut() {
     let pos = 0;
     let timerId = setInterval(frame, 1);
     function frame() {
-        if (pos == -100) {
+        if (pos === -100) {
             clearInterval(timerId);
             elem.remove();
         } else {

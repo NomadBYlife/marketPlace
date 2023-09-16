@@ -18,4 +18,17 @@ export function domManipulation() {
             },
         });
     });
+
+    const cartIcon = document.querySelector('.header__shopCart_iconWrap');
+    const cartModal = document.querySelector('.modalWindow_wrap');
+    const closeCart = document.querySelector('.modalWindow__closeImg_wrap')
+
+    cartIcon.addEventListener('click', ()=>{
+        cartModal.style.display = 'block'
+    } )
+
+    closeCart.addEventListener('click', ()=>{
+        cartModal.style.display = 'none'
+    })
+
 }

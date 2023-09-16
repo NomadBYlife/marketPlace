@@ -1,11 +1,11 @@
 import '../style/style.scss'
 import {ProductList} from './ProductLIst.js';
 import {domManipulation} from './domManipulation.js'
-import card from './ShoppingCart';
+// import card from './ShoppingCart';
 
 domManipulation()
 
-card.redrawIcon();
+// card.redrawIcon();
 
 const productList = new ProductList()
 productList.addProduct('../images/card1.jpg', 'Блендер Sakura', 79.00)
