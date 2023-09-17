@@ -1,4 +1,4 @@
-export class Cart {
+class Cart {
     constructor() {
         this.storeKey = 'cartItems';
         let storedItems = window.localStorage.getItem(this.storeKey);
@@ -167,19 +167,12 @@ export class Cart {
         quantityWrap.addEventListener('click', event => {
             const productId = event.currentTarget.getAttribute('data-id');
             const productObj = this.items[productId];
-            console.log(productObj)
             if (!productObj) return;
             if (event.target === btnPlus) {
-                // let productQuantity = this.add(productObj.product);
                 quantity.innerHTML = this.add(productObj.product);
                 //
             }
             if (event.target === btnMinus) {
-                // let productQuantity = this.remove(productObj.product);
-                // if (productQuantity.innerHTML === '0') {
-                //     quantityWrap.style.display = 'none';
-                //     //     quantityWrap.style.display = '';
-                //     // }
                 quantity.innerHTML = this.remove(productObj.product);
             }
         })

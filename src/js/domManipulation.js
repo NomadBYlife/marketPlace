@@ -1,4 +1,4 @@
-import {cart, Cart} from "./Cart.js";
+import {cart} from "./Cart.js";
 
 export function domManipulation() {
 

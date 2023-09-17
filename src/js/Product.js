@@ -1,7 +1,6 @@
 import {animationIn, animationOut, counterId} from './utils.js';
 import {cart} from './Cart.js';
 
-// const cart = new Cart();
 
 export class Product {
     constructor(pathToImage, description, price) {
@@ -103,7 +102,6 @@ export class Product {
         divShopCartWrap.classList.add('card__shopCart_iconWrap');
         divShopCartWrapMain.append(divShopCartWrap);
         divShopCartWrap.addEventListener('click', () => {
-            // let quantity = cart.add(this);
             pQuantity.innerHTML = cart.add(this);
             divShopCartWrap.style.display = 'none'
             divQuantityWrap.style.display = '';
@@ -157,6 +155,13 @@ export class Product {
         btnQuantityMinus.innerHTML = '-';
         divQuantityWrap.append(btnQuantityMinus);
 
+        /** корзинка или кол-во после перезагрузки страницы*/
+        let quantity = cart.items[this.id]?.quantity
+        if (quantity >0){
+            pQuantity.innerHTML = quantity;
+            divShopCartWrap.style.display = 'none'
+            divQuantityWrap.style.display = '';
+        }
 
         return divCard
     }
