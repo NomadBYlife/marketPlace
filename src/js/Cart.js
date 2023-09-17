@@ -84,6 +84,15 @@ class Cart {
         const integerPart = parseInt(parts[0], 10);
         const fractionalPart = parts[1] ? parts[1].padStart(2, '0') : '00';
         subTotalPrice.innerHTML = `${integerPart}.<span class="modalWindow__subtotalPrice_span">${fractionalPart}</span>`
+
+        /** убрать/показать скрол в корзине */
+        let modalWindow = document.querySelector(".modalWindow")
+        if (Object.keys(this.items).length > 2) {
+            console.log("more than 2")
+            modalWindow.style.overflowY = "scroll";
+        } else {
+            modalWindow.style.overflowY = "";
+        }
     }
 
     totalPrice() {
