@@ -1,5 +1,5 @@
 import '../style/style.scss'
-import {ProductList} from './ProductLIst.js';
+import {productList, ProductList} from './ProductLIst.js';
 import {domManipulation} from './domManipulation.js'
 // import card from './ShoppingCart';
 
@@ -7,7 +7,7 @@ domManipulation()
 
 // card.redrawIcon();
 
-const productList = new ProductList()
+// const productList = new ProductList()
 productList.addProduct('../images/card1.jpg', 'Блендер Sakura', 79.00)
 productList.addProduct('../images/card2.jpg', 'Сушилка для овощей и фруктов Normann', 136.00)
 productList.addProduct('../images/card3.jpg', 'Газонокосилка Patriot', 1382.00)

@@ -1,7 +1,6 @@
-import {Cart} from "./Cart.js";
+import {cart, Cart} from "./Cart.js";
 
 export function domManipulation() {
-
 
     document.addEventListener("DOMContentLoaded", function () {
         let swiper = new Swiper(".mySwiper", {
@@ -30,7 +29,6 @@ export function domManipulation() {
 
     cartIcon.addEventListener('click', () => {
         cartModal.style.display = 'flex';
-        let cart = new Cart()
         cart.redrawCart();
     })
 
@@ -39,16 +37,19 @@ export function domManipulation() {
     })
 
     deleteAllInCart.addEventListener('click', () => {
-        let cart = new Cart()
         cart.deleteAll();
         const divShopCartWrap = document.querySelectorAll('.card__shopCart_iconWrap')
-        divShopCartWrap.forEach((el) =>{el.style.display = 'flex'})
-        // divShopCartWrap.style.display = 'flex'
-        const divQuantityWrap  = document.querySelectorAll('.card__quantity_wrap')
-        divQuantityWrap.forEach((el) =>{el.style.display = 'none'})
-        const cardQuantities  = document.querySelectorAll('.card__quantity')
-        console.log(cardQuantities[0].innerHTML)
-        cardQuantities.forEach((el) =>{el.innerHTML = 0})
+        divShopCartWrap.forEach((el) => {
+            el.style.display = 'flex'
+        })
+        const divQuantityWrap = document.querySelectorAll('.card__quantity_wrap')
+        divQuantityWrap.forEach((el) => {
+            el.style.display = 'none'
+        })
+        const cardQuantities = document.querySelectorAll('.card__quantity')
+        cardQuantities.forEach((el) => {
+            el.innerHTML = 0
+        })
     })
 
 }

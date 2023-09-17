@@ -52,3 +52,5 @@ export class ProductList {
         })
     }
 }
+
+export const productList = new ProductList()

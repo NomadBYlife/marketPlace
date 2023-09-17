@@ -1,7 +1,7 @@
 import {animationIn, animationOut, counterId} from './utils.js';
-import {Cart} from './Cart.js';
+import {cart} from './Cart.js';
 
-const cart = new Cart();
+// const cart = new Cart();
 
 export class Product {
     constructor(pathToImage, description, price) {
@@ -103,8 +103,8 @@ export class Product {
         divShopCartWrap.classList.add('card__shopCart_iconWrap');
         divShopCartWrapMain.append(divShopCartWrap);
         divShopCartWrap.addEventListener('click', () => {
-            let quantity = cart.add(this);
-            pQuantity.innerHTML = quantity;
+            // let quantity = cart.add(this);
+            pQuantity.innerHTML = cart.add(this);
             divShopCartWrap.style.display = 'none'
             divQuantityWrap.style.display = '';
         });
@@ -130,14 +130,11 @@ export class Product {
 
         divQuantityWrap.addEventListener('click', event => {
             if (event.target === btnQuantityPlus) {
-                let quantity = cart.add(this);
-                pQuantity.innerHTML = quantity;
+                pQuantity.innerHTML = cart.add(this);
 
             }
             if (event.target === btnQuantityMinus) {
-                let quantity = cart.remove(this);
-                // console.log(quantity2, 'qweqwe')
-                pQuantity.innerHTML = quantity;
+                pQuantity.innerHTML = cart.remove(this);
                 if (pQuantity.innerHTML === '0') {
                     divQuantityWrap.style.display = 'none';
                     divShopCartWrap.style.display = '';

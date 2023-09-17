@@ -18,23 +18,26 @@ export class Cart {
         }
         this.updateCountIcon();
         this.saveToStorage();
+        this.redrawCart()
         return this.items[product.id].quantity
     }
-
 
     remove(product) {
         /** Удаляет продукт из корзины. **/
         if (this.items[product.id]) {
             this.items[product.id].quantity--;
             if (this.items[product.id].quantity === 0) {
+                delete this.items[product.id];
                 this.updateCountIcon();
                 this.saveToStorage();
+                this.redrawCart()
                 return 0
 
             }
         }
         this.updateCountIcon();
         this.saveToStorage();
+        this.redrawCart()
         return this.items[product.id] ? this.items[product.id].quantity : 0;
     }
 
@@ -84,7 +87,7 @@ export class Cart {
     }
 
     totalPrice() {
-                /** Посчитать общую сумму в корзине */
+        /** Посчитать общую сумму в корзине */
         let total = 0;
         for (let product in this.items) {
             if (!this.items[product]) continue;
@@ -150,6 +153,7 @@ export class Cart {
 
         const quantityWrap = document.createElement('div');
         quantityWrap.classList.add('modalWindow__quantity_wrap');
+        quantityWrap.setAttribute('data-id', product['product'].id);
         const btnPlus = document.createElement('button');
         btnPlus.classList.add('modalWindow__quantity_btnPlus');
         btnPlus.textContent = '+';
@@ -159,9 +163,32 @@ export class Cart {
         const btnMinus = document.createElement('button');
         btnMinus.classList.add('modalWindow__quantity_btnMinus');
         btnMinus.textContent = '-';
+
+        quantityWrap.addEventListener('click', event => {
+            const productId = event.currentTarget.getAttribute('data-id');
+            const productObj = this.items[productId];
+            console.log(productObj)
+            if (!productObj) return;
+            if (event.target === btnPlus) {
+                // let productQuantity = this.add(productObj.product);
+                quantity.innerHTML = this.add(productObj.product);
+                //
+            }
+            if (event.target === btnMinus) {
+                // let productQuantity = this.remove(productObj.product);
+                // if (productQuantity.innerHTML === '0') {
+                //     quantityWrap.style.display = 'none';
+                //     //     quantityWrap.style.display = '';
+                //     // }
+                quantity.innerHTML = this.remove(productObj.product);
+            }
+        })
+
         quantityWrap.append(btnPlus, quantity, btnMinus);
         card.append(quantityWrap);
         return card
     }
 
 }
+
+export const cart = new Cart()
