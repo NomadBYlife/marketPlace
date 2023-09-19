@@ -54,7 +54,6 @@ export function domManipulation() {
 
     btnPay.addEventListener('click', event => {
         const modalCardsList = document.querySelectorAll('.modalWindow__card');
-        console.log(modalCardsList)
         if(modalCardsList.length === 0) {
             alert(`Your cart is empty`);
         } else {
