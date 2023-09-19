@@ -554,7 +554,29 @@ main {
     align-items: flex-end;
   }
 
-  &__subtotal_btn {
+  &__btn_wrap {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  &__subtotal_btnDelete {
+    max-width: 120px;
+    color: #FFF;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 12px;
+    border: none;
+    padding: 10px 37px;
+    background: linear-gradient(90deg, #3333A5 0%, rgba(0, 0, 204, 0.95) 100%);
+    transition: all 0.3s linear;
+
+    &:hover {
+      box-shadow: 0px 0px 10px 0px rgba(48, 48, 169, 0.70);
+      color: #F69809;
+    }
+  }
+
+  &__subtotal_btnPay {
     max-width: 120px;
     color: #FFF;
     font-size: 10px;
