@@ -36,9 +36,14 @@ export class ProductList {
             return;
         }
         input.addEventListener('input', () => {
+            const swiper = document.querySelector('.swiper__wrap')
             const query = input.value.toLowerCase();
             const filteredProduct = this.productsList.filter(product => product.description.toLowerCase().includes(query));
-
+            if(query){
+                swiper.style.display = 'none'
+            } else {
+                swiper.style.display = '';
+            }
             targetElement.innerHTML = ""
             this.#displayProduct(filteredProduct, targetElement)
         })

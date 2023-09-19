@@ -1,3 +1,4 @@
+import {productList} from "./ProductLIst.js";
 class Cart {
     constructor() {
         this.storeKey = 'cartItems';
@@ -86,13 +87,13 @@ class Cart {
         subTotalPrice.innerHTML = `${integerPart}.<span class="modalWindow__subtotalPrice_span">${fractionalPart}</span>`
 
         /** убрать/показать скрол в корзине */
-        let modalWindow = document.querySelector(".modalWindow")
-        if (Object.keys(this.items).length > 2) {
-            console.log("more than 2")
-            modalWindow.style.overflowY = "scroll";
-        } else {
-            modalWindow.style.overflowY = "";
-        }
+        // let modalWindow = document.querySelector(".modalWindow")
+        // if (Object.keys(this.items).length > 2) {
+        //     console.log("more than 2")
+        //     modalWindow.style.overflowY = "scroll";
+        // } else {
+        //     modalWindow.style.overflowY = "";
+        // }
     }
 
     totalPrice() {
@@ -184,6 +185,7 @@ class Cart {
             if (event.target === btnMinus) {
                 quantity.innerHTML = this.remove(productObj.product);
             }
+            productList.renderList()
         })
 
         quantityWrap.append(btnPlus, quantity, btnMinus);
