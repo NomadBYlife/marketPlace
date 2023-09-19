@@ -35,3 +35,18 @@ const count = function getCount() {
     }
 }
 export const counterId = count()
+
+export function clearCart() {
+    const divShopCartWrap = document.querySelectorAll('.card__shopCart_iconWrap')
+            divShopCartWrap.forEach((el) => {
+                el.style.display = 'flex'
+            })
+            const divQuantityWrap = document.querySelectorAll('.card__quantity_wrap')
+            divQuantityWrap.forEach((el) => {
+                el.style.display = 'none'
+            })
+            const cardQuantities = document.querySelectorAll('.card__quantity')
+            cardQuantities.forEach((el) => {
+                el.innerHTML = 0
+            })
+}
