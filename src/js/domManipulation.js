@@ -44,15 +44,19 @@ export function domManipulation() {
 
     btnPay.addEventListener('click', event => {
         const modalCardsList = document.querySelectorAll('.modalWindow__card');
-
-        console.log(cart.items)
-
-        /** тут обработать cart.items  */
+        const allCards = cart.items;
+        const allCardsDescription = Object.values(allCards);
+        let cardsDescription = '';
+        for( let i = 0; i < allCardsDescription.length; i++){
+            let description = allCardsDescription[i].product.description;
+            let quantity = allCardsDescription[i].quantity;
+            cardsDescription += `${description}: ${quantity} шт,\n`;
+        }
 
         if(modalCardsList.length === 0) {
             alert(`Your cart is empty`);
         } else {
-            alert(`Your order in the amount of ${cart.totalPrice()} has been accepted for processing. We will contact you soon (never).`);
+            alert(`Ваш заказ:\n${cardsDescription}на сумму ${cart.totalPrice().toFixed(2)} byn принят в обработку. Мы скоро свяжемся с вами (никогда).`);
             cart.deleteAll();
             cartModal.style.display = 'none';
             clearCart()
