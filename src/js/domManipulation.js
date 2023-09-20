@@ -54,7 +54,7 @@ export function domManipulation() {
         }
 
         if(modalCardsList.length === 0) {
-            alert(`Your cart is empty`);
+            alert(`Ваша корзина пуста`);
         } else {
             alert(`Ваш заказ:\n${cardsDescription}на сумму ${cart.totalPrice().toFixed(2)} byn принят в обработку. Мы скоро свяжемся с вами (никогда).`);
             cart.deleteAll();
